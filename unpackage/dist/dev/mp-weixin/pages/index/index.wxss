@@ -1,0 +1,231 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+.clock {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  color: #888;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+  background: #000;
+  font: normal 11px "Helvetica Neue", Helvetica, sans-serif;
+}
+.clock .container {
+  display: flex;
+  text-align: center;
+}
+.clock .container > view {
+  display: flex;
+}
+view.flip {
+  width: 120rpx;
+  height: 180rpx;
+  line-height: 174rpx;
+  font-size: 160rpx;
+  font-weight: bold;
+  margin: 10rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.7);
+  border-radius: 12rpx;
+  position: relative;
+}
+view.flip > view {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+view.flip > view > view {
+  height: 100%;
+  color: #ccc;
+  -webkit-perspective: 200px;
+          perspective: 200px;
+}
+view.flip > view > view view {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  overflow: hidden;
+  left: 0;
+  z-index: 1;
+}
+view.flip > view > view view .shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+view.flip > view > view view .inn {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  color: #ccc;
+  text-shadow: 0 2rpx 4rpx #000;
+  background-color: #333;
+  border-radius: 12rpx;
+  left: 0;
+  z-index: 1;
+}
+view.flip > view > view view.up {
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+  top: 0;
+}
+view.flip > view > view view.up::after {
+  content: '';
+  width: 100%;
+  height: 6rpx;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  bottom: -4rpx;
+  z-index: 5;
+}
+view.flip > view > view view.up .inn {
+  top: 0;
+}
+view.flip > view > view view.down {
+  -webkit-transform-origin: 50% 0;
+          transform-origin: 50% 0;
+  bottom: 0;
+}
+view.flip > view > view view.down .inn {
+  bottom: 0;
+}
+view.flip > view.before {
+  z-index: 3;
+}
+view.flip > view.before .up {
+  z-index: 2;
+  -webkit-animation: turn2 .5s linear both;
+          animation: turn2 .5s linear both;
+}
+view.flip > view.before .up .shadow {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, black 100%);
+  -webkit-animation: show .5s linear both;
+          animation: show .5s linear both;
+}
+view.flip > view.before .down .shadow {
+  background: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.1) 100%);
+  -webkit-animation: show .5s linear both;
+          animation: show .5s linear both;
+}
+view.flip > view.active {
+  z-index: 2;
+  -webkit-animation: asd .5s .5s linear both;
+          animation: asd .5s .5s linear both;
+}
+view.flip > view.active .up .shadow {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, black 100%);
+  -webkit-animation: hide .5s .3s linear both;
+          animation: hide .5s .3s linear both;
+}
+view.flip > view.active .down {
+  z-index: 2;
+  -webkit-animation: turn .5s .5s linear both;
+          animation: turn .5s .5s linear both;
+}
+view.flip > view.active .down .shadow {
+  background: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.1) 100%);
+  -webkit-animation: hide .5s .3s linear both;
+          animation: hide .5s .3s linear both;
+}
+.blinker {
+  font-size: 160rpx;
+  color: #333;
+}
+@-webkit-keyframes asd {
+0% {
+    z-index: 2;
+}
+5% {
+    z-index: 4;
+}
+100% {
+    z-index: 4;
+}
+}
+@keyframes asd {
+0% {
+    z-index: 2;
+}
+5% {
+    z-index: 4;
+}
+100% {
+    z-index: 4;
+}
+}
+@-webkit-keyframes turn {
+0% {
+    -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+}
+100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+}
+}
+@keyframes turn {
+0% {
+    -webkit-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+}
+100% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+}
+}
+@-webkit-keyframes turn2 {
+0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+}
+100% {
+    -webkit-transform: rotateX(-90deg);
+            transform: rotateX(-90deg);
+}
+}
+@keyframes turn2 {
+0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+}
+100% {
+    -webkit-transform: rotateX(-90deg);
+            transform: rotateX(-90deg);
+}
+}
+@-webkit-keyframes show {
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}
+@keyframes show {
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}
+@-webkit-keyframes hide {
+0% {
+    opacity: 1;
+}
+100% {
+    opacity: 0;
+}
+}
+@keyframes hide {
+0% {
+    opacity: 1;
+}
+100% {
+    opacity: 0;
+}
+}
+
